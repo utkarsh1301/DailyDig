@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+        body {
+            background: url('/static/images/bakground_login.jpg') rgba(0, 0, 0, 0.5);
+            background-blend-mode: multiply;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Montserrat', sans-serif;
+
+        }
+
+        .login_bg {
+            border: 4px solid rgb(0, 0, 0);
+            width: auto;
+            margin-left: 35%;
+            margin-right: 35%;
+            margin-top: 27px;
+            background-color: rgba(0, 0, 0);
+            border-radius: 20px;
+            backdrop-filter: blur(17px);
+
+        }
+
+        .header {
+            text-align: center;
+            font-weight: 700;
+            font-size: 40px;
+            color: white;
+            cursor: default;
+        }
+
+        .input-box {
+            position: relative;
+            margin: 20px 0;
+            width: 70%;
+            height: 50px;
+            border-bottom: 3px solid rgb(255, 255, 255);
+
+        }
+
+        .input-box input {
+            font-size: 1rem;
+            font-weight: bold;
+            position: absolute;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            height: 100%;
+            width: 87%;
+            top: 11%;
+            left: 2px;
+            color: white;
+        }
+
+        .input-box label {
+            position: absolute;
+            top: 44%;
+            font-size: 1rem;
+            font-weight: bold;
+            left: 2px;
+        }
+
+        .input-box #phone {
+            position: absolute;
+            left: 35px;
+            width: 76%;
+
+        }
+
+        .input-box #password {
+            width: 80%
+        }
+
+        .input-box .icon {
+            position: absolute;
+            font-size: 1.2rem;
+            top: 44%;
+            right: 5px;
+            color: white;
+        }
+
+        .input-box .eye-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            top: 44%;
+            right: 30px;
+            cursor: pointer;
+            color: white;
+        }
+        
+        .input-box #validation-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            top: 44%;
+            right: 30px;
+            cursor: none;
+        }
+
+        .login_btn {
+            margin-top: 30px;
+            padding: 3%;
+            height: 70%;
+            width: 70%;
+            font-size: 25px;
+            border-radius: 15px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            margin-bottom: 40px;
+            cursor: pointer;
+        }
+
+        .to_login {
+
+            color: rgb(0, 0, 0);
+            font-size: 15px;
+            font-weight: 200;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: rgb(255, 255, 255);
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .to_login a {
+            color: rgb(5, 5, 171)
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .vis {
+            cursor: pointer;
+
+        }
+    </style>
+    <title>Register</title>
+</head>
+
+<body>
+
+    <div class="login_bg">
+        <p class="header">
+            Register <br>
+            <img src="/static/images/logo.png" style="padding-top: 20px ;">
+
+        </p>
+        <center>
+            <form action="/register_user" method="post">
+            <div class="input-box">
+                <input type="text" id="first_name" name="f_name" placeholder="First Name" required>
+            </div>
+            <div class="input-box">
+                <input type="text" id="last_name" name="l_name" placeholder="Last Name" required>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="bi bi-telephone-fill"></i>
+                </span>
+                <input type="number" id="phone" name="ph_number" placeholder="Phone Number" required>
+                <label style="color: white;">+91</label>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="bi bi-person-fill"></i>
+                </span>
+                <input type="text" id="loginid" name="login" placeholder="Username" required>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="bi bi-lock-fill"></i>
+                </span>
+                <span class="eye-icon">
+                    <i id="passwordicon" class="bi bi-eye-fill" onclick="visiblity()"></i>
+                    <!-- <i class="bi bi-eye-slash-fill" style="display: none;" onclick="visiblity()" id="eyeclose"></i> -->
+                </span>
+                <input type="password" id="password" name="pwd" placeholder="Create Password" required>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="bi bi-lock-fill"></i>
+                </span>
+                <span id="validation-icon">
+                    <!-- <i class="bi bi-check"></i> -->
+                </span>
+                <input type="password" id="c_password" name="c_pwd" placeholder="Confirm Password" required>
+            </div>
+            <button class="login_btn">Register</button>
+        </form>
+            <div class="to_login">Already have an account? <a href = "/">Login Here</a></div>
+        </center>
+
+    </div>
+
+</body>
+<script>
+    function register() {
+        window.location.href = "{{ url_for('index') }}";
+        invalid.innerHTML = "";
+    }
+
+    function validate_pass() {
+        
+        var password = document.getElementById('password').value;
+        var c_password = document.getElementById('c_password').value;
+        var validate_icon = document.getElementById('validation-icon')
+        if(password == c_password){
+            validate_icon.innerHTML = '<i class="bi bi-check"></i>';
+        }
+
+
+
+    }
+
+    function visiblity() {
+        var passwordField = document.getElementById('password');
+        var passwordicon = document.getElementById('passwordicon');
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            passwordicon.classList.remove("bi-eye-fill");
+            passwordicon.classList.add("bi-eye-slash-fill");
+        } 
+        else {
+            passwordField.type = "password";
+            passwordicon.classList.remove("bi-eye-slash-fill");
+            passwordicon.classList.add("bi-eye-fill");
+        }
+    }
+
+
+</script>
+
+</html>
